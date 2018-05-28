@@ -30,13 +30,3 @@ render(
 
 module.hot.accept();
 
-
-
-{
-  /* <BrowserRouter history={history}>
-  <InitialState history={history}/>
-  
-  </BrowserRouter> */
-}
-/*  <PersistGate loading={null} persistor={persistor}>
-    </PersistGate> */
