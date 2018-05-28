@@ -18,20 +18,20 @@ class InitialState extends Component {
     this.props.resetListings()
   }
 
-  updateList = () => {
+  /*   updateList = () => {
     const {getRealtysList } = this.props;
     const {listings} = this.props.results;
     listings.length = 0;
     const  numPage = 0; 
     getRealtysList(this.state.place, numPage);
-  }
+  } */
   getLocations = () => {
-/*      const { getLocations, getRealtysList } = this.props; 
+     const { getLocations, getRealtysList } = this.props; 
      const { listings} = this.props.results;
      listings.length = 0;
     const  numPage = 0;  
-    getRealtysList(this.state.place, numPage); */
-    this.updateList();
+    getRealtysList(this.state.place, numPage); 
+   /*  this.updateList(); */
     this.props.getLocations(this.state.place);
   };
 
