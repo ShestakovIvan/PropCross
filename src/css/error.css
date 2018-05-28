@@ -1,0 +1,12 @@
+.errorResult {
+    margin-top: 120px;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+  }
+
+.message {
+  margin-top: 10px;
+}  

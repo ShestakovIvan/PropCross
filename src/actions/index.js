@@ -21,9 +21,9 @@ const listSearch = (location, totalResults) => ({
     payload: { location, totalResults}
 })
 
-const error = (code) => ({
+const error = (code, textError) => ({
     type: 'ERROR_CODE',
-    payload: { code}
+    payload: { code, textError}
 })
 
  export const getLocations = place => (dispatch, getState) => {
@@ -32,8 +32,6 @@ const error = (code) => ({
         const { listings, total_results: totalResults, application_response_code: resCode, page } = data.response;
         const {location} = data.request;
         /* dispatch(hideSpinner()); */
-
-
        if(resCode === '101' || resCode === '100' || resCode === '110') 
     {
         const find = (array, value) => array.indexOf(value);
@@ -44,12 +42,25 @@ const error = (code) => ({
         dispatch(setLocations(listings, location, totalResults));
         dispatch(push(`/search/:location=${location}`));
     }  
-      if(resCode === '200' || resCode === '202' || resCode === '900') 
-    {
-        dispatch(error(resCode));
-    }   
+    dispatch(checkError(resCode));
+     
  }) 
 } 
+ const checkError = (resCode) => dispatch => {
+    if(resCode === '200' || resCode === '202') 
+    { 
+        const textError = 'unknown location';
+        dispatch(error(resCode, textError));
+         dispatch(push(`/error=${resCode}`)); 
+    }   
+     else if ( resCode === '900') 
+     {
+        const textError = 'bad request';
+        dispatch(error(resCode, textError));
+         dispatch(push(`/error=${resCode}`)); 
+     }
+    
+ }
 
 export const getMyLocation = ()  => dispatch => {
     const results = agent.getCoords()
@@ -76,6 +87,7 @@ export const getMyLocations = data => (dispatch, getState) => {
       dispatch(setLocations(listings, country, totalResults));
       dispatch(push(`/search/:location=${country}`));
   }  
+  dispatch(checkError(resCode));
 }  
 
 /* export const getLocation = place => (dispatch,getState) => {

@@ -21,8 +21,10 @@ class FavouritesList extends Component {
         <div>
     {this.realtiesList == 0 ? (<div className='textInFaves'>Вы не добавили никаких свойств в избранное</div>):(<div className='favesList'>{this.realtiesList}</div>)}
          </div>
+      {/*    {this.realtiesList}  */}
       </div>
 
+      /*  <RealtyList listings={JSON.parse(localStorage.favourites)} />; */
     );
   }
 }

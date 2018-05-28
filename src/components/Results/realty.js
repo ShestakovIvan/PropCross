@@ -5,11 +5,22 @@ import { selectRealty } from '../../actions/realty';
 import { connect } from 'react-redux';
 
 class Realty extends Component {
+  componentDidMount() {
+   /*  const { realty: selectedRealty, InfoAboutRealty } = this.props;
+    if (InfoAboutRealty === selectedRealty) {
+      this.scrollToSelectedElement();
+    } */
+  }
 
   selectRealty = () => {
     const { selectRealty, InfoAboutRealty } = this.props;
     selectRealty(InfoAboutRealty);
   };
+
+/*   scrollToSelectedElement = () => {
+    const node = ReactDOM.findDOMNode(this);
+    node.scrollIntoView();
+  }; */
 
   render() {
     console.log(this.props);

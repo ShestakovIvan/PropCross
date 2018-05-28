@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Location from './listRecentPlace';
 import 'whatwg-fetch';
-import { getRealtysList, resetListings } from "../../actions/results";
+import { getRealtysList, resetListings } from '../../actions/results';
 import { getLocations, getMyLocation } from '../../actions/index';
 import Spinner from '../Spinner';
 
@@ -15,7 +15,7 @@ class InitialState extends Component {
     };
   }
   componentDidMount() {
-    this.props.resetListings()
+    this.props.resetListings();
   }
 
   /*   updateList = () => {
@@ -26,49 +26,53 @@ class InitialState extends Component {
     getRealtysList(this.state.place, numPage);
   } */
   getLocations = () => {
-     const { getLocations, getRealtysList } = this.props; 
-     const { listings} = this.props.results;
-     listings.length = 0;
-    const  numPage = 0;  
-    getRealtysList(this.state.place, numPage); 
-   /*  this.updateList(); */
+    const { getLocations, getRealtysList } = this.props;
+    const { listings } = this.props.results;
+    listings.length = 0;
+    const numPage = 0;
+    getRealtysList(this.state.place, numPage);
+    /*  this.updateList(); */
     this.props.getLocations(this.state.place);
   };
 
   getMyLocation = () => {
-/*     this.updateList(); */
+    /*     this.updateList(); */
     this.props.getMyLocation();
   };
 
-
-
   onChangeHandler = e => {
-    console.log( this.props);
+    console.log(this.props);
     this.setState({
       place: e.target.value
     });
   };
 
-
-   get recentPlace () {
-      const searches = this.props.recList.recentArray.map((loc, i) => (
+  get recentPlace() {
+    const searches = this.props.recList.recentArray.map((loc, i) => (
       <Location
-          key={i}
-          place={loc.location}
-          totalResults={loc.totalResults}
-          index={i + 1}
+        key={i}
+        place={loc.location}
+        totalResults={loc.totalResults}
+        index={i + 1}
       />
-  ));
-  return (
-      <div>
-          {searches}
-      </div>
-  ); 
-  }; 
+    ));
+    return <div>{searches}</div>;
+  }
+
+/*   get errorMessage() {
+    const errorResult = this.props.error.errorList.map((er, i) => (
+      <Error
+        key={i}
+        errorCode={er.code}
+        errorText={er.textError}
+      />
+    ));
+    return <div>{errorResult}</div>;
+  } */
 
   render() {
- /*    const {spinner} = this.props;
-     */
+    /*    const {spinner} = this.props;
+    let mainSpinner = (spinner) ? <Spinner/> : null; */
     return (
       <div>
         <p className="initialText">
@@ -90,17 +94,21 @@ class InitialState extends Component {
           <button name="go" className="btnGo" onClick={this.getLocations}>
             Go
           </button>
-          <button name="myLocation" className="btnMyLoc" onClick={this.getMyLocation}>
+          <button
+            name="myLocation"
+            className="btnMyLoc"
+            onClick={this.getMyLocation}
+          >
             My location
           </button>
           {/* <button name="myLocation" onClick={this.test}>
             Test
           </button> */}
         </div>
-        
-        
-         {/*  {!this.recentPlace ? <p>Recent Searches: </p> : null } */}
-      {/*    {mainSpinner} */}
+
+       {/*    {!this.recentPlace ? <p>Recent Searches: </p> : null } */}
+        <h4>Recent Searches:</h4>
+        {/*    {mainSpinner} */}
         {this.recentPlace}
       </div>
     );
@@ -115,9 +123,20 @@ class InitialState extends Component {
   };
 }
 
-const mapStateToProps = ({ placeList, results, recList, error, spinner }) => ({ placeList, results, recList, error, spinner });  
+const mapStateToProps = ({ placeList, results, recList, spinner, error }) => ({
+  placeList,
+  results,
+  recList,
+  spinner,
+  error
+});
 
-  export default connect(mapStateToProps,  { getLocations, getRealtysList, resetListings, getMyLocation })(InitialState);
+export default connect(mapStateToProps, {
+  getLocations,
+  getRealtysList,
+  resetListings,
+  getMyLocation
+})(InitialState);
 
 /* export default connect(
   state => ({

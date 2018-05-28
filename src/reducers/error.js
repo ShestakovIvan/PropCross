@@ -1,10 +1,17 @@
+const errorInState = {
+  errorList: []
+};
 
-export default function errorList(errorState = {}, action) {
+export default (errorState = errorInState, action) => {
   const { type, payload } = action;
   switch (type) {
     case 'ERROR_CODE':
-    errorState = payload;
-    return errorState;
+    return {...errorInState, errorList: [payload]}
+
   }
   return errorState;
 }
+
+
+      /* errorState = payload;
+    return errorState; */

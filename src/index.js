@@ -15,6 +15,7 @@ import './css/favorites-button.css';
 import './css/faves.css';
 import './css/results.css';
 import './css/property.css';
+import './css/error.css';
 
 render(
   <Provider store={store}>

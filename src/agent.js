@@ -24,8 +24,8 @@ const  getCoordsBrowsers = () => (
   new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(position => {
           const { latitude, longitude } = position.coords;
-          /* const coordinates = `${latitude},${longitude}`; */
-           const coordinates = `${51.684183},${-3.431481}`; 
+          const coordinates = `${latitude},${longitude}`; 
+           /* const coordinates = `${51.684183},${-3.431481}`;  */
           resolve(coordinates);
       }, reject);
   }))

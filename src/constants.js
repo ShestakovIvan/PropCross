@@ -4,6 +4,7 @@ export const SET_LISTINGS = 'SET_LISTINGS';
 export const RESET_LISTINGS = 'RESET_LISTINGS';
 export const SELECT_REALTY = 'SELECT_REALTY';
 export const LIST_SEARCH = 'LIST_SEARCH';
+export const MAX_SIZE_LOCATION = 5;
 export const SELECT_FAVES = 'SELECT_FAVES';
 export const DELETE_FAVES = 'DELETE_FAVES';
 export const SHOW_SPINNER = 'SHOW_SPINNER';

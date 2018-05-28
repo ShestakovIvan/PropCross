@@ -8,14 +8,20 @@ import PropertyRealty from './components/Results/propertyRealty';
 import history from './history';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Error from './components/Error';
 
 const results = id => {
-  console.log(id);
+ /*  console.log(id); */
   return <ResultsList id={id.match.params.id} />;
 };
 const realty = id => {
-  console.log(id);
+  /* console.log(id); */
   return <PropertyRealty id={id.match.params.id} />;
+};
+
+const error = id => {
+  console.log(id);
+  return <Error id={id.match.params.id} />;
 };
 
 
@@ -26,7 +32,8 @@ class App extends React.Component {
           <Navbar/>
         <Switch>
           <Route exact={true} path="/" component={InitialState} />
-           <Route path="/search/:location=:id" render={results} /> 
+          <Route path="/error=:id" render={error} /> 
+           <Route path="/search/:location=:id" render={results} />
            <Route path="/search/:location/:realty=:id" render={realty}/>
            <Route path="/faves" component={FavouritesList}/>
         </Switch>
@@ -35,4 +42,7 @@ class App extends React.Component {
   }
 }
 export default App;
+/* component={ResultsList} */
 
+
+{/* <Route path=":title" component={Realty} /> */}
